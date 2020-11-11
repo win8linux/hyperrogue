@@ -1,4 +1,4 @@
-# This Makefile works for Mac OS X (El Capitan), MinGW, and Linux.
+# This Makefile works for Mac OS X (El Capitan), MinGW, Haiku, and Linux.
 #
 # For Mac OS X:
 #   Run "brew install sdl" to install SDL in /usr/local.
@@ -27,6 +27,9 @@ else
   else
     ifeq ($(UNAME_S),Darwin)
       OS := osx
+  else
+    ifeq ($(UNAME_S),Haiku)
+      OS := haiku
     endif
   endif
   TOOLCHAIN_VERSION_S := $(shell $(CXX) --version)
@@ -44,6 +47,17 @@ endif
 
 ifeq (${OS},linux)
   CXXFLAGS_EARLY += -DLINUX
+  EXE_EXTENSION :=
+  LDFLAGS_GL := -lGL
+  LDFLAGS_GLEW := -lGLEW
+  LDFLAGS_PNG := -lpng
+  LDFLAGS_SDL := -lSDL -lSDL_gfx -lSDL_mixer -lSDL_ttf -lpthread -lz
+  OBJ_EXTENSION := .o
+  hyper_RES :=
+endif
+
+ifeq (${OS},haiku)
+  CXXFLAGS_EARLY += -DHAIKU
   EXE_EXTENSION :=
   LDFLAGS_GL := -lGL
   LDFLAGS_GLEW := -lGLEW
