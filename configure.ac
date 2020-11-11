@@ -8,11 +8,13 @@ AC_PROG_CC
 
 AC_CANONICAL_HOST
 AM_CONDITIONAL(LINUX, test ["${host_os#*linux}" != "$host_os"])
+AM_CONDITIONAL(HAIKU, test ["${host_os#*haiku}" != "$host_os"])
 AM_CONDITIONAL(MAC, test ["${host_os#*darwin}" != "$host_os"])
 AM_CONDITIONAL(MINGW, test ["${host_os#*mingw}" != "$host_os"])
 AM_COND_IF(LINUX, AC_DEFINE([LINUX], [1]))
 AM_COND_IF(MAC, AC_DEFINE([MAC], [1]))
 AM_COND_IF(MINGW, AC_DEFINE([WINDOWS], [1]))
+AM_COND_IF(HAIKU, AC_DEFINE([HAIKU], [1]))
 
 AC_CHECK_HEADERS([GL/gl.h OpenGL/gl.h], break, AC_MSG_RESULT([OpenGL header was not found]))
 AC_CHECK_HEADERS([GL/glew.h], [], AC_MSG_RESULT([GLEW header was not found]))
