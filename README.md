@@ -65,7 +65,7 @@ autoreconf -vi
 make
 ```
 
-There is also a standalone Makefile for Linux, OSX, and MinGW.
+There is also a standalone Makefile for Linux, OSX, Haiku, and MinGW.
 
 ```
 git clone https://github.com/zenorogue/hyperrogue.git
